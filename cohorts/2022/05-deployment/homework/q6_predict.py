@@ -24,10 +24,7 @@ def predict():
     y_pred = model.predict_proba(X)[0, 1]
     get_card = y_pred >= 0.5
 
-    result = {
-        'get_card_probability': float(y_pred),
-        'get_card': bool(get_card)
-    }
+    result = {'get_card_probability': float(y_pred), 'get_card': get_card}
 
     return jsonify(result)
 

@@ -36,12 +36,10 @@ class ImageTransformer(kserve.KFModel):
         return {'instances': result}
 
     def postprocess(self, response: Dict) -> Dict:
-        result = []
-
-        for prediction in response['predictions']:
-            output = dict(zip(self.classes, prediction))
-            result.append(output)
-
+        result = [
+            dict(zip(self.classes, prediction))
+            for prediction in response['predictions']
+        ]
         return {'predictions': result}
 
 if __name__ == '__main__':
